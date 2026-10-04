@@ -247,6 +247,7 @@ async function boot() {
   $('#ask').addEventListener('submit', ask);
   setEngine('Getting Noor\u2019s answers ready on this phone\u2026', 'loading');
   const mode = await matcher.init(({ loaded, total }) => {
+    if (total < 1e6) return; // loading from the phone's cache: no download to report
     setEngine(`Saving the AI model to this phone: ${(loaded / 1e6).toFixed(0)} of ${(total / 1e6).toFixed(0)} MB`, 'loading');
   });
   setEngine(mode === 'ai'

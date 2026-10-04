@@ -45,7 +45,7 @@ function render() {
     const li = document.createElement('li');
     li.className = 'q-item';
     li.style.setProperty('--accent', accentFor(item.question));
-    const when = new Date(item.at).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    const when = new Date(item.at).toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
     const hint = hintFor(item.question);
     li.innerHTML = `
       <div class="q-top">

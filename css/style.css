@@ -78,12 +78,7 @@ h1 {
   letter-spacing: -.01em;
   text-transform: uppercase;
 }
-h1 span {
-  color: var(--dusk); /* fallback where background-clip text is unsupported */
-  background: linear-gradient(90deg, var(--sky), var(--dusk) 38%, var(--rose) 70%, var(--red));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+h1 span { color: #6A4FD8; } /* the far ridge in the hero */
 .lede { margin: 18px 0 0; max-width: 44ch; font-size: 17px; color: var(--text-2); }
 
 /* ---------- ask ---------- */
