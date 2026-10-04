@@ -1,0 +1,207 @@
+/* Sauti ya Noor: riso-print paper, kanga cards, dot-matrix highlands. */
+:root {
+  --paper: #EAE6DC;
+  --paper-2: #F4F1EA;
+  --ink: #161616;
+  --muted: #5E594F;
+  --red: #E4502B;
+  --sun: #F2C230;
+  --sky: #6AA0D6;
+  --leaf: #45A866;
+  --rose: #EC5A99;
+  --dusk: #5B46B8;
+  --display: 'Big Shoulders Display', 'Arial Narrow', 'Roboto Condensed', Impact, sans-serif;
+  --mono: 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --gutter: clamp(16px, 5vw, 28px);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0 auto;
+  max-width: 640px;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.6 var(--mono);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  position: relative;
+}
+/* Paper grain, like the riso references */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 50;
+  opacity: .5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .42 0 0 0 0 .36 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; text-underline-offset: 3px; }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+
+/* ---------- status ---------- */
+.status {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) var(--gutter) 8px;
+  background: var(--paper);
+  border-bottom: 2px solid var(--ink);
+  font-size: 12px; line-height: 1.4;
+}
+#net { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
+#net i { width: 9px; height: 9px; border-radius: 50%; background: var(--leaf); display: inline-block; }
+#net[data-state="offline"] i { background: var(--red); }
+#engine { color: var(--muted); }
+#engine[data-state="ai"] { color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero canvas { display: block; width: 100%; height: clamp(220px, 52vw, 300px); }
+.hero-text { padding: 4px var(--gutter) 8px; }
+.place { margin: 0 0 6px; font-size: 12px; color: var(--muted); }
+h1 {
+  margin: 0;
+  font: 900 clamp(60px, 18vw, 112px)/.84 var(--display);
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+.lede { margin: 16px 0 0; max-width: 46ch; }
+
+/* ---------- ask ---------- */
+main { padding: 8px var(--gutter) 0; }
+.ask label { display: block; font-size: 12px; color: var(--muted); margin: 18px 0 6px; }
+.ask-row { display: flex; gap: 0; border: 2px solid var(--ink); background: var(--paper-2); }
+.ask input {
+  flex: 1; min-width: 0;
+  border: 0; background: transparent;
+  padding: 14px 14px; font-size: 17px;
+}
+.ask input::placeholder { color: #8d877b; }
+.ask input:focus-visible { outline: none; }
+.ask-row:focus-within { box-shadow: 0 0 0 3px var(--sky); }
+.ask button {
+  border: 0; border-left: 2px solid var(--ink);
+  background: var(--ink); color: var(--paper);
+  padding: 0 18px;
+  font: 900 21px/1 var(--display); letter-spacing: .02em; text-transform: uppercase;
+  cursor: pointer;
+}
+.ask button:hover { background: var(--red); color: var(--ink); }
+
+.suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1.5px solid var(--ink); background: transparent;
+  padding: 6px 12px 6px 6px; font-size: 13px; cursor: pointer; text-align: left;
+}
+.chip:hover { background: var(--paper-2); }
+.chip-tile { width: 24px; height: 24px; flex: none; background: var(--ink); padding: 2px; }
+.chip-tile svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- listening: vertical streaks ---------- */
+.listening { margin: 28px 0 0; }
+.streaks {
+  height: 120px; border: 2px solid var(--ink);
+  background:
+    linear-gradient(180deg, var(--paper) 0%, transparent 28%, transparent 72%, var(--paper) 100%),
+    repeating-linear-gradient(90deg,
+      var(--sky) 0 3px, transparent 3px 11px, var(--red) 11px 19px, var(--ink) 19px 23px,
+      transparent 23px 31px, var(--dusk) 31px 34px, var(--sun) 34px 41px, transparent 41px 52px);
+  background-size: 100% 100%, 260px 100%;
+  filter: blur(.6px) saturate(1.1);
+  animation: streak 1.1s steps(9) infinite;
+}
+@keyframes streak { to { background-position: 0 0, 260px 0; } }
+.listening p { margin: 8px 0 0; font-size: 13px; }
+
+/* ---------- answer: kanga card ---------- */
+.answer { margin: 28px 0 0; scroll-margin-top: 64px; }
+.kanga {
+  --accent: var(--sun);
+  border: 2px solid var(--ink);
+  padding: 14px;
+  background:
+    radial-gradient(circle, var(--ink) 0 2.1px, transparent 2.7px) 0 0 / 13px 13px,
+    var(--accent);
+}
+.kanga-field { background: var(--paper-2); border: 2px solid var(--ink); padding: 18px 18px 16px; }
+.kanga-head { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+.kanga-tile { width: 64px; height: 64px; flex: none; background: var(--ink); padding: 5px; }
+.kanga-tile svg { display: block; width: 100%; height: 100%; }
+.kanga-topic { margin: 0; font: 900 24px/1 var(--display); text-transform: uppercase; }
+.kanga-count { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.sw {
+  margin: 0;
+  font: 700 clamp(27px, 7.4vw, 38px)/1.06 var(--display);
+}
+.tr { margin: 12px 0 0; font-size: 15px; max-width: 52ch; }
+.jina {
+  margin: 12px 0 0; padding: 8px 10px;
+  background: var(--ink); color: var(--paper);
+  font: 700 13px/1.2 var(--mono); letter-spacing: .28em; text-transform: uppercase; text-align: center;
+}
+
+.player { display: flex; align-items: center; gap: 14px; margin: 18px 0 0; }
+.play {
+  width: 56px; height: 56px; flex: none; border-radius: 50%;
+  border: 0; background: var(--ink); cursor: pointer;
+  display: grid; place-items: center;
+}
+.play span {
+  width: 0; height: 0; margin-left: 4px;
+  border-style: solid; border-width: 10px 0 10px 17px;
+  border-color: transparent transparent transparent var(--paper);
+}
+.play[data-state="playing"] span { width: 16px; height: 16px; margin: 0; border: 0; background: var(--sun); }
+.wave { flex: 1; min-width: 0; height: 68px; display: block; }
+.play-note { margin: 6px 0 0; min-height: 1.2em; font-size: 12px; color: var(--muted); font-style: italic; }
+
+.langs { display: flex; gap: 6px; margin: 14px 0 0; flex-wrap: wrap; }
+.langs button {
+  border: 1.5px solid var(--ink); background: transparent;
+  padding: 3px 10px; font-size: 12px; cursor: pointer;
+}
+.langs button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+.kanga-unsure {
+  background:
+    repeating-linear-gradient(45deg, var(--ink) 0 1.5px, transparent 1.5px 9px),
+    var(--paper);
+}
+.kanga-unsure .sw { color: var(--muted); }
+
+.match { display: flex; gap: 14px; align-items: flex-start; margin: 14px 0 0; }
+.orb { width: 52px; height: 52px; flex: none; border: 1.5px solid var(--ink); background-color: var(--paper-2); }
+.match p { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+/* ---------- about ---------- */
+.about { margin: 44px var(--gutter) 0; padding: 18px 0 40px; border-top: 2px solid var(--ink); }
+.about h2 { margin: 0 0 8px; font: 900 30px/1 var(--display); text-transform: uppercase; }
+.about p { margin: 0 0 10px; max-width: 60ch; }
+.about .fine { margin-top: 18px; font-size: 12px; color: var(--muted); }
+.about .fine a { display: inline-block; margin-top: 6px; color: var(--ink); font-weight: 700; }
+
+/* ---------- daughter's view ---------- */
+.d-head { padding: 22px var(--gutter) 0; }
+.d-head h1 { font-size: clamp(54px, 16vw, 92px); }
+.d-head p { max-width: 52ch; }
+.queue { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 16px; }
+.q-item { border: 2px solid var(--ink); background: var(--paper-2); padding: 14px; }
+.q-item h3 { margin: 0 0 4px; font: 700 24px/1.1 var(--display); }
+.q-meta { margin: 0 0 12px; font-size: 12px; color: var(--muted); }
+.q-item label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+.q-item textarea, .q-item input {
+  width: 100%; border: 1.5px solid var(--ink); background: var(--paper); padding: 8px 10px; font-size: 14px;
+}
+.q-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.btn {
+  border: 2px solid var(--ink); background: var(--ink); color: var(--paper);
+  padding: 8px 14px; font: 900 18px/1 var(--display); text-transform: uppercase; cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--ink); }
+.empty { border: 2px dashed var(--ink); padding: 18px; }
+.empty p { margin-top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .streaks { animation: none; }
+}

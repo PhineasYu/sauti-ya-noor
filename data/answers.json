@@ -1,0 +1,140 @@
+{
+  "note": "Fictional sample content for a hackathon prototype. Swahili text is AI-translated and awaits native-speaker review. Audio files in /audio are stand-ins for Noor's own recordings.",
+  "answers": [
+    {
+      "id": "story", "topic": "Noor's story", "sw_title": "Hadithi yangu",
+      "sw": "Karibu sana! Mimi ni Noor. Nimelima kahawa kwenye mlima huu kwa miaka kumi na moja, pamoja na familia yangu.",
+      "en": "Welcome! I'm Noor. I've grown coffee on this hillside for eleven years, together with my family.",
+      "fr": "Bienvenue ! Je suis Noor. Je cultive le café sur cette colline depuis onze ans, avec ma famille.",
+      "de": "Willkommen! Ich bin Noor. Seit elf Jahren baue ich mit meiner Familie Kaffee an diesem Hang an.",
+      "examples": ["Who are you?", "Tell me about yourself", "How long have you been farming here?", "What is your story?", "Qui êtes-vous ?", "Wer bist du?"],
+      "keywords": ["noor", "who", "story", "yourself", "family", "qui", "famille", "wer", "familie", "years"]
+    },
+    {
+      "id": "grow", "topic": "How the coffee grows", "sw_title": "Jinsi tunavyolima",
+      "sw": "Kahawa yetu inakua chini ya kivuli cha miti mirefu. Tunachuma kwa mkono, tunda moja moja lililoiva.",
+      "en": "Our coffee grows in the shade of tall trees. We pick by hand, one ripe cherry at a time.",
+      "fr": "Notre café pousse à l'ombre de grands arbres. Nous cueillons à la main, cerise mûre par cerise mûre.",
+      "de": "Unser Kaffee wächst im Schatten hoher Bäume. Wir pflücken von Hand, jede reife Kirsche einzeln.",
+      "examples": ["How do you grow the coffee?", "Is the coffee picked by hand?", "What kind of coffee plants do you have?", "Comment cultivez-vous le café ?", "Wie wird der Kaffee angebaut?"],
+      "keywords": ["grow", "plant", "plants", "pick", "hand", "shade", "trees", "cultiver", "cultivez", "cueillir", "anbau", "angebaut", "pflücken"]
+    },
+    {
+      "id": "process", "topic": "After picking", "sw_title": "Baada ya kuchuma",
+      "sw": "Baada ya kuchuma, tunaondoa ganda la tunda, tunaacha mbegu zichachuke kwa siku moja, kisha tunaziosha kwa maji safi.",
+      "en": "After picking, we remove the fruit skin, let the beans ferment for a day, then wash them in clean water.",
+      "fr": "Après la cueillette, nous retirons la peau du fruit, laissons fermenter les grains une journée, puis les lavons à l'eau claire.",
+      "de": "Nach der Ernte entfernen wir die Fruchthaut, lassen die Bohnen einen Tag fermentieren und waschen sie dann mit sauberem Wasser.",
+      "examples": ["How do you process the coffee?", "What happens after picking?", "Do you ferment the beans?", "Washed or natural process?", "Comment le café est-il traité ?", "Wie wird der Kaffee verarbeitet?"],
+      "keywords": ["process", "processed", "ferment", "fermentation", "wash", "washed", "traité", "verarbeitet", "waschen"]
+    },
+    {
+      "id": "dry", "topic": "Drying in the sun", "sw_title": "Kukausha juani",
+      "sw": "Tunakausha kahawa juani juu ya vichanja kwa takriban wiki mbili. Tunaigeuza kila siku ili ikauke sawasawa.",
+      "en": "We dry the coffee in the sun on raised beds for about two weeks, turning it every day so it dries evenly.",
+      "fr": "Nous séchons le café au soleil sur des lits surélevés pendant environ deux semaines, en le retournant chaque jour.",
+      "de": "Wir trocknen den Kaffee etwa zwei Wochen lang in der Sonne auf Trockenbetten und wenden ihn jeden Tag.",
+      "examples": ["How do you dry the coffee?", "How long does drying take?", "What are those tables in the sun?", "Comment séchez-vous le café ?", "Wie lange trocknet der Kaffee?"],
+      "keywords": ["dry", "drying", "dried", "sun", "beds", "tables", "sécher", "séchez", "séchage", "trocknen", "trocknet", "sonne"]
+    },
+    {
+      "id": "tour", "topic": "What happens on the tour", "sw_title": "Ziara",
+      "sw": "Ziara inaanzia shambani, kisha tunachuma pamoja, tunaona mahali pa kukausha, na mwisho tunakaanga na kunywa kahawa pamoja.",
+      "en": "The tour starts in the field. We pick together, visit the drying beds, and finish by roasting and drinking coffee together.",
+      "fr": "La visite commence dans le champ. Nous cueillons ensemble, voyons les lits de séchage, puis torréfions et buvons le café ensemble.",
+      "de": "Die Tour beginnt auf dem Feld. Wir pflücken zusammen, besuchen die Trockenbetten und rösten und trinken zum Schluss gemeinsam Kaffee.",
+      "examples": ["What happens on the tour?", "What will we do on the farm visit?", "Can we taste the coffee?", "Que fait-on pendant la visite ?", "Was macht man bei der Führung?"],
+      "keywords": ["tour", "visit", "taste", "roast", "tasting", "visite", "déguster", "führung", "probieren"]
+    },
+    {
+      "id": "duration", "topic": "Tour length and times", "sw_title": "Muda wa ziara",
+      "sw": "Ziara inachukua takriban saa mbili. Tunaanza saa tatu asubuhi au saa nane mchana.",
+      "en": "The tour takes about two hours. We start at 9 in the morning or 2 in the afternoon.",
+      "fr": "La visite dure environ deux heures. Nous commençons à 9 h ou à 14 h.",
+      "de": "Die Tour dauert etwa zwei Stunden. Wir beginnen um 9 Uhr morgens oder um 14 Uhr.",
+      "examples": ["How long is the tour?", "What time does it start?", "When can we come?", "Combien de temps dure la visite ?", "Wie lange dauert die Tour?", "Um wie viel Uhr geht es los?"],
+      "keywords": ["long", "time", "hours", "start", "when", "durée", "dure", "heure", "heures", "dauer", "dauert", "uhr", "stunden"]
+    },
+    {
+      "id": "price", "topic": "Price", "sw_title": "Bei",
+      "sw": "Ziara ni dola kumi na tano kwa mtu mmoja, pamoja na kikombe cha kahawa. Watoto wanalipa nusu.",
+      "en": "The tour is 15 US dollars per person, including a cup of coffee. Children pay half.",
+      "fr": "La visite coûte 15 dollars par personne, une tasse de café comprise. Les enfants paient la moitié.",
+      "de": "Die Tour kostet 15 US-Dollar pro Person, inklusive einer Tasse Kaffee. Kinder zahlen die Hälfte.",
+      "examples": ["How much does the tour cost?", "What is the price?", "Is it expensive?", "Price for children?", "Combien coûte la visite ?", "Was kostet die Führung?"],
+      "keywords": ["price", "cost", "costs", "expensive", "dollars", "prix", "coûte", "kostet", "preis", "children", "kinder", "enfants"]
+    },
+    {
+      "id": "booking", "topic": "How to book", "sw_title": "Kuweka nafasi",
+      "sw": "Tuma ujumbe kwa namba iliyo kwenye kadi ya lango, ukitaja siku na idadi ya watu, angalau siku moja kabla.",
+      "en": "Send a text to the number on the gate card with the day and number of people, at least one day ahead.",
+      "fr": "Envoyez un SMS au numéro inscrit sur la carte du portail, avec le jour et le nombre de personnes, au moins un jour avant.",
+      "de": "Schicken Sie eine SMS an die Nummer auf der Karte am Tor, mit Tag und Personenzahl, mindestens einen Tag vorher.",
+      "examples": ["How do I book a tour?", "Can I make a reservation?", "Do I need to book in advance?", "Comment réserver ?", "Wie kann ich buchen?"],
+      "keywords": ["book", "booking", "reserve", "reservation", "advance", "réserver", "réservation", "buchen", "reservieren"]
+    },
+    {
+      "id": "directions", "topic": "Finding the farm", "sw_title": "Njia ya kufika",
+      "sw": "Kutoka sokoni, fuata barabara ya vumbi kupanda mlima kwa kilomita tatu. Utaona kibao cha njano chenye kikombe cha kahawa.",
+      "en": "From the market, follow the dirt road uphill for three kilometres. Look for a yellow sign with a coffee cup.",
+      "fr": "Depuis le marché, suivez la piste en montée sur trois kilomètres. Cherchez un panneau jaune avec une tasse de café.",
+      "de": "Vom Markt aus folgen Sie der Schotterstraße drei Kilometer bergauf. Achten Sie auf ein gelbes Schild mit einer Kaffeetasse.",
+      "examples": ["How do I get to the farm?", "Where is the farm?", "Directions please", "Is it far from town?", "Comment venir à la ferme ?", "Wie komme ich zur Farm?"],
+      "keywords": ["where", "get", "directions", "road", "far", "way", "find", "town", "aller", "trouver", "chemin", "venir", "où", "weg", "wo", "finden", "komme"]
+    },
+    {
+      "id": "buy", "topic": "Buying coffee", "sw_title": "Kununua kahawa",
+      "sw": "Ndiyo! Unaweza kununua kahawa tuliyokaanga hapa shambani. Mfuko wa gramu mia mbili na hamsini ni dola nane.",
+      "en": "Yes! You can buy coffee we roasted here on the farm. A 250-gram bag is 8 dollars.",
+      "fr": "Oui ! Vous pouvez acheter du café torréfié ici à la ferme. Un sachet de 250 grammes coûte 8 dollars.",
+      "de": "Ja! Sie können hier auf der Farm gerösteten Kaffee kaufen. Eine 250-Gramm-Tüte kostet 8 Dollar.",
+      "examples": ["Can I buy coffee to take home?", "Do you sell beans?", "How much is a bag of coffee?", "Puis-je acheter du café ?", "Kann ich Kaffee kaufen?"],
+      "keywords": ["buy", "sell", "bag", "beans", "home", "souvenir", "acheter", "vendre", "sachet", "kaufen", "tüte", "bohnen"]
+    },
+    {
+      "id": "payment", "topic": "Paying", "sw_title": "Malipo",
+      "sw": "Tunapokea pesa taslimu na pesa kwa simu. Kwa bahati mbaya hatuna mashine ya kadi.",
+      "en": "We accept cash and mobile money. Sorry, we don't have a card machine.",
+      "fr": "Nous acceptons les espèces et le paiement mobile. Désolée, nous n'avons pas de terminal de carte.",
+      "de": "Wir nehmen Bargeld und Mobile Money. Leider haben wir kein Kartenlesegerät.",
+      "examples": ["Can I pay by card?", "Do you take cash?", "How can I pay?", "Do you accept mobile money?", "Puis-je payer par carte ?", "Kann ich mit Karte zahlen?"],
+      "keywords": ["pay", "card", "cash", "credit", "mobile", "money", "payer", "carte", "espèces", "zahlen", "karte", "bargeld"]
+    },
+    {
+      "id": "food", "topic": "Lunch on the farm", "sw_title": "Chakula",
+      "sw": "Tukijua mapema, tunaweza kupika chakula cha mchana cha kienyeji: ugali, maharagwe na mboga za shambani.",
+      "en": "If you tell us in advance, we can cook a local lunch: ugali, beans and vegetables from the farm.",
+      "fr": "Si vous nous prévenez, nous pouvons préparer un déjeuner local : ugali, haricots et légumes de la ferme.",
+      "de": "Wenn Sie es vorher sagen, kochen wir ein lokales Mittagessen: Ugali, Bohnen und Gemüse vom Hof.",
+      "examples": ["Is there food?", "Can we have lunch at the farm?", "Do you serve meals?", "Are there vegetarian options?", "Peut-on déjeuner sur place ?", "Gibt es Essen?"],
+      "keywords": ["food", "lunch", "eat", "meal", "meals", "vegetarian", "déjeuner", "manger", "repas", "essen", "mittagessen"]
+    },
+    {
+      "id": "season", "topic": "Best time to visit", "sw_title": "Msimu bora",
+      "sw": "Msimu wa mavuno ni kuanzia Oktoba hadi Desemba. Huo ndio wakati mzuri zaidi wa kutembelea.",
+      "en": "Harvest season runs from October to December. That's the best time to visit.",
+      "fr": "La récolte a lieu d'octobre à décembre. C'est la meilleure période pour venir.",
+      "de": "Die Erntezeit ist von Oktober bis Dezember. Das ist die beste Zeit für einen Besuch.",
+      "examples": ["When is the best time to visit?", "When is harvest season?", "Which month should we come?", "Quelle est la meilleure saison ?", "Wann ist Erntezeit?"],
+      "keywords": ["season", "harvest", "month", "best", "saison", "récolte", "mois", "ernte", "erntezeit", "monat"]
+    },
+    {
+      "id": "bring", "topic": "What to bring", "sw_title": "Cha kuleta",
+      "sw": "Vaa viatu vizuri vya kutembea na lete kofia. Njia za shambani zina mteremko na jua ni kali.",
+      "en": "Wear good walking shoes and bring a hat. The paths are steep and the sun is strong.",
+      "fr": "Portez de bonnes chaussures de marche et un chapeau. Les chemins sont raides et le soleil est fort.",
+      "de": "Tragen Sie gute Wanderschuhe und bringen Sie einen Hut mit. Die Wege sind steil und die Sonne ist stark.",
+      "examples": ["What should I bring?", "What should I wear?", "Is it a difficult walk?", "Que faut-il apporter ?", "Was soll ich mitbringen?"],
+      "keywords": ["bring", "wear", "shoes", "hat", "walk", "steep", "difficult", "apporter", "chaussures", "mitbringen", "schuhe", "anziehen"]
+    },
+    {
+      "id": "photos", "topic": "Taking photos", "sw_title": "Picha",
+      "sw": "Unaweza kupiga picha shambani popote. Tafadhali uliza kwanza kabla ya kupiga picha za watu.",
+      "en": "You can take photos anywhere on the farm. Please ask first before photographing people.",
+      "fr": "Vous pouvez prendre des photos partout sur la ferme. Demandez avant de photographier les personnes.",
+      "de": "Sie dürfen überall auf der Farm fotografieren. Bitte fragen Sie, bevor Sie Menschen fotografieren.",
+      "examples": ["Can I take pictures?", "Are photos allowed?", "Can I film?", "Puis-je prendre des photos ?", "Darf ich fotografieren?"],
+      "keywords": ["photo", "photos", "picture", "pictures", "camera", "film", "video", "photographier", "fotografieren", "foto"]
+    }
+  ]
+}

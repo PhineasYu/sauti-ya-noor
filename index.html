@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sauti ya Noor · Ask Noor about her coffee farm</title>
+  <meta name="description" content="Ask Noor anything about her coffee farm and hear her answer in her own voice. Works offline on your phone.">
+  <meta name="theme-color" content="#EAE6DC">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="status" role="status">
+    <span id="net" data-state="online"><i aria-hidden="true"></i><span id="net-label">Online</span></span>
+    <span id="engine" data-state="loading">Getting Noor’s answers ready on this phone…</span>
+  </div>
+
+  <header class="hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-text">
+      <p class="place">Shamba la Noor, Ondera highlands</p>
+      <h1>Sauti ya<br>Noor</h1>
+      <p class="lede">Ask Noor anything about her coffee farm. You’ll hear her answer in Swahili, in her own voice, with subtitles in your language.</p>
+    </div>
+  </header>
+
+  <main>
+    <form id="ask" class="ask" autocomplete="off">
+      <label for="q">Your question, in any language</label>
+      <div class="ask-row">
+        <input id="q" name="q" type="text" placeholder="How much is the tour?" enterkeyhint="send">
+        <button type="submit">Ask Noor</button>
+      </div>
+    </form>
+
+    <div id="suggestions" class="suggestions" aria-label="Questions other visitors ask"></div>
+
+    <div id="listening" class="listening" hidden>
+      <div class="streaks" aria-hidden="true"></div>
+      <p>Finding Noor’s answer…</p>
+    </div>
+
+    <section id="answer" class="answer" hidden aria-live="polite"></section>
+  </main>
+
+  <footer class="about">
+    <h2>How this works</h2>
+    <p>Noor has recorded <span id="count">15</span> answers about her farm. When you ask a question, a small AI model on your phone finds the answer that fits best and plays it. It never writes new answers, so it can’t make things up.</p>
+    <p>If no answer fits, your question is saved for Noor’s daughter, who replies at the weekend. Her reply becomes a new answer for the next visitor.</p>
+    <p>After your first visit, everything works without signal.</p>
+    <p class="fine">Prototype for the World Bank Small AI for Development hackathon. Noor is fictional. Swahili text is AI-translated and awaits native-speaker review; recordings are placeholders.
+      <a href="daughter.html">Open the daughter’s view</a></p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

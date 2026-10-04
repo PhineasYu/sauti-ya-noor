@@ -1,0 +1,10 @@
+{
+  "name": "Sauti ya Noor",
+  "short_name": "Sauti ya Noor",
+  "description": "Ask Noor about her coffee farm and hear her answer in her own voice.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#EAE6DC",
+  "theme_color": "#EAE6DC",
+  "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
