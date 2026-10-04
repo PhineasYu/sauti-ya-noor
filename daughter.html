@@ -21,17 +21,29 @@
   </div>
   <header class="d-head">
     <h1>Maswali ya<br><span>wikendi</span></h1>
-    <p class="lede">Visitors asked these, and Noor has no recorded answer yet. Write one with your mother. The next visitor who asks will hear it.</p>
+    <p class="lede">This is the family’s side of Sauti ya Noor. When a visitor asks something Noor has no answer for, it lands here. Write her answer, record her saying it, and the next visitor hears it.</p>
   </header>
   <main>
-    <h2 class="sec">How to answer <span>About five minutes a question</span></h2>
+    <div class="stats" aria-label="Overview">
+      <div class="stat c-orchid"><b id="st-wait">0</b><span>waiting for an answer</span></div>
+      <div class="stat c-lime"><b id="st-added">0</b><span>answers added by the family</span></div>
+      <div class="stat c-violet"><b id="st-voice">0</b><span>recorded in Noor’s voice</span></div>
+    </div>
+
+    <h2 class="sec">Waiting for you <span id="q-count">Questions from visitors</span></h2>
+    <ul id="queue" class="queue"></ul>
+
+    <h2 class="sec">Noor’s answers <span>What visitors hear today. Record Noor to replace the AI voice.</span></h2>
+    <ul id="library" class="library"></ul>
+
+    <h2 class="sec">How it works <span>About five minutes a question</span></h2>
     <ol class="flow">
       <li class="step c-peri" data-next="right">
         <span class="step-n">1</span>
         <span class="art art-bubbles" aria-hidden="true"><i></i><i></i></span>
-        <h3>Read the question<span>it may be in French or German</span></h3>
+        <h3>A question arrives<span>from a visitor’s link, or asked on this phone</span></h3>
       </li>
-      <li class="step c-lime">
+      <li class="step c-lime" data-next="down">
         <span class="step-n">2</span>
         <span class="art art-tile" data-tile="story" aria-hidden="true"></span>
         <h3>Write Noor’s answer<span>one or two sentences, as she’d say it</span></h3>
@@ -39,7 +51,7 @@
       <li class="step step-wide c-violet">
         <span class="step-n">3</span>
         <span class="art art-wave" aria-hidden="true"></span>
-        <h3>Noor records it<span>until then, visitors read your text</span></h3>
+        <h3>Record Noor<span>tap Record, hand her the phone</span></h3>
       </li>
     </ol>
 
@@ -52,9 +64,7 @@
         <p><b>Topic</b>Wifi and signal</p>
       </div>
     </article>
-
-    <h2 class="sec">Waiting for you <span id="q-count">Questions from visitors</span></h2>
-    <ul id="queue" class="queue"></ul>
+    <p class="note">In this prototype everything is saved on this phone. Recordings play for visitors who use this phone; in the field they would sync when there is signal.</p>
   </main>
   <script type="module" src="js/daughter.js"></script>
 </body>

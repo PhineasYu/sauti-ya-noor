@@ -32,5 +32,5 @@ Open the folder with any static server (Claude Code can start one), or visit the
 
 - Swahili is a well-supported language. For a less-supported one (e.g. Kikuyu), the fixed answer list still works: Noor just records the same answers herself. No TTS or ASR is needed on her side.
 - Matching quality was not measured on real visitor questions. The threshold is a starting guess.
-- The daughter's queue lives on one device in this demo. In the field it would be store-and-forward: saved on the phone, synced when there is signal.
+- There is no server. A visitor's unanswered question reaches the family as a link (WhatsApp or the share menu) that drops it into `daughter.html`. Answers and Noor's recordings made there are saved on that phone (localStorage and IndexedDB) and play for visitors using it; syncing them to every visitor's phone is the next step.
 - No personal data is collected. Questions stay on the visitor's device unless forwarded to Noor's family.

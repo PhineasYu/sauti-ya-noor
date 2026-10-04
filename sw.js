@@ -1,7 +1,7 @@
 // Offline support. The app shell is cached on install; scripts, fonts and audio
 // are cached the first time they load. The AI model itself is cached by
 // transformers.js in the browser's Cache Storage.
-const CACHE = 'sauti-v4';
+const CACHE = 'sauti-v5';
 const SHELL = [
   './', 'index.html', 'daughter.html', 'css/style.css', 'manifest.json', 'icons/icon.svg',
   'js/app.js', 'js/daughter.js', 'js/matcher.js', 'js/store.js', 'js/visuals.js',

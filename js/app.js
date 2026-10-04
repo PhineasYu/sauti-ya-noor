@@ -1,6 +1,6 @@
 import { kangaTile, accentFor, drawHighlands, VoiceWave } from './visuals.js';
 import { Matcher } from './matcher.js';
-import { store, loadAnswers } from './store.js';
+import { store, loadAnswers, recordings, familyLink } from './store.js';
 
 const $ = s => document.querySelector(s);
 const LANGS = ['en', 'fr', 'de'];
@@ -76,7 +76,7 @@ function playAnswer(answer, wave, button) {
   stopPlayback = () => { if (!stopped) { audio.pause(); window.speechSynthesis?.cancel(); finish(); } };
   button.dataset.state = 'playing'; button.setAttribute('aria-label', 'Stop');
 
-  const audio = new Audio(`audio/${answer.id}.mp3`);
+  const audio = new Audio();
   const simulate = () => {
     if (stopped) return;
     // No recording yet: show the waveform anyway so the flow can be demoed.
@@ -108,7 +108,12 @@ function playAnswer(answer, wave, button) {
     };
     raf = requestAnimationFrame(tick);
   }, { once: true });
-  audio.play().catch(() => {});
+  // Noor's own recording (made on the family's page) wins over the stand-in file.
+  recordings.get(answer.id).then(rec => {
+    if (stopped) return;
+    audio.src = rec ? URL.createObjectURL(rec) : `audio/${answer.id}.mp3`;
+    audio.play().catch(() => {});
+  });
 }
 
 // The 'AI picked this' mark: one fixed kanga pattern, greyed out when nothing matched.
@@ -189,6 +194,10 @@ function renderUnsure(result, question) {
         </header>
         <p class="sw" lang="sw">${UNSURE.sw}</p>
         <p class="tr" lang="${lang}">${UNSURE[lang]}</p>
+        <div class="send">
+          <button type="button" class="btn" id="send-family">Send to Noor’s family</button>
+          <span>Opens WhatsApp or your share menu. They reply at the weekend.</span>
+        </div>
       </div>
       <p class="jina" lang="sw">Nitakujibu</p>
     </article>
@@ -199,8 +208,20 @@ function renderUnsure(result, question) {
         : `The closest answer was \u201c${result.candidate.topic}\u201d (strength ${result.score.toFixed(2)}), below the ${result.threshold.toFixed(2)} needed.`}
       Rather than guess, the question goes to a person.</p>
     </aside>`;
+  out.querySelector('#send-family').addEventListener('click', () => sendToFamily(question));
   out.hidden = false;
   out.scrollIntoView({ block: 'start' });
+}
+
+// Store-and-forward without a server: the question travels as a link the family opens.
+async function sendToFamily(question) {
+  const url = familyLink(question, lang);
+  const text = `A visitor asked Noor: “${question}”. Open to answer:`;
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Question for Noor', text, url }); return; }
+    catch (err) { if (err.name === 'AbortError') return; }
+  }
+  window.open(`https://wa.me/?text=${encodeURIComponent(`${text} ${url}`)}`, '_blank', 'noopener');
 }
 
 function escapeHtml(s) {
