@@ -1,4 +1,4 @@
-import { kangaTile, accentFor, drawHighlands, VoiceWave, orbStyle } from './visuals.js';
+import { kangaTile, accentFor, drawHighlands, VoiceWave } from './visuals.js';
 import { Matcher } from './matcher.js';
 import { store, loadAnswers } from './store.js';
 
@@ -111,6 +111,9 @@ function playAnswer(answer, wave, button) {
   audio.play().catch(() => {});
 }
 
+// The 'AI picked this' mark: one fixed kanga pattern, greyed out when nothing matched.
+const MATCH_MARK = 'sauti-ai';
+
 // ---------- answer card ----------
 function renderAnswer(result, question) {
   const out = $('#answer');
@@ -165,7 +168,7 @@ function matchNote(result) {
   const how = result.mode === 'ai' ? 'AI on this phone' : 'keyword matching';
   return `
     <aside class="match">
-      <div class="orb" style="--orb:${orbStyle(result.score)}" aria-hidden="true"><i></i><i></i></div>
+      <div class="match-tile" aria-hidden="true">${kangaTile(MATCH_MARK, { muted: !result.answer })}</div>
       <p>Matched by ${how}, strength ${result.score.toFixed(2)}.
       These are Noor\u2019s own words. The AI only chose which answer to play.</p>
     </aside>`;
@@ -190,7 +193,7 @@ function renderUnsure(result, question) {
       <p class="jina" lang="sw">Nitakujibu</p>
     </article>
     <aside class="match">
-      <div class="orb" style="--orb:${orbStyle(result.score)}" aria-hidden="true"><i></i><i></i></div>
+      <div class="match-tile" aria-hidden="true">${kangaTile(MATCH_MARK, { muted: !result.answer })}</div>
       <p>${result.score < 0.05
         ? 'None of Noor\u2019s answers came close.'
         : `The closest answer was \u201c${result.candidate.topic}\u201d (strength ${result.score.toFixed(2)}), below the ${result.threshold.toFixed(2)} needed.`}

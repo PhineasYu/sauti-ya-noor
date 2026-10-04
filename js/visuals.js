@@ -1,6 +1,6 @@
 // Visual system for Sauti ya Noor.
 // Kanga tiles (symmetric geometric marks, one per answer), the dot-matrix
-// highlands hero, Noor's layered voice waveform and the match-strength orb.
+// highlands hero and Noor's layered voice waveform.
 
 export const PALETTE = {
   red: '#F2582C', sun: '#F7E03C', sky: '#4FA3EC',
@@ -217,15 +217,4 @@ export class VoiceWave {
     if (this.progress > 0 && this.progress < 1) g.fillRect(this.progress * w - 1.5, 0, 3, h);
   }
   set(p) { this.progress = p; this.draw(); }
-}
-
-// ---------- Match-strength orb: a soft breathing gradient ----------
-// A strong match is vivid and bright; a weak one fades towards grey.
-export function orbStyle(score) {
-  const s = Math.max(0, Math.min(1, score));
-  const pct = Math.round(25 + s * 75); // how much colour survives
-  const c = hex => `color-mix(in oklab, ${hex} ${pct}%, #C9CCCE)`;
-  return `radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,0) 42%),
-    radial-gradient(circle at 70% 75%, ${c(PALETTE.rose)} 0, transparent 55%),
-    conic-gradient(from 210deg, ${c(PALETTE.sky)}, ${c(PALETTE.dusk)}, ${c(PALETTE.rose)}, ${c('#FF9A6B')}, ${c(PALETTE.sky)})`;
 }
