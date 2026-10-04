@@ -3,13 +3,14 @@
 // highlands hero and Noor's layered voice waveform.
 
 export const PALETTE = {
-  red: '#F2582C', sun: '#F7E03C', sky: '#4FA3EC',
-  leaf: '#3DBA6B', rose: '#F07FE3', dusk: '#8B5CF6',
+  // Modern take on wax-print / kanga colours: vermilion, mustard, cobalt, emerald, orange, cream.
+  red: '#E0412B', sun: '#F5B82E', sky: '#2F6DB5',
+  leaf: '#1E8C5A', rose: '#EE7B30', dusk: '#F3EBDD',
   ink: '#141414', paper: '#E4E6E5'
 };
 const TILE_COLORS = [PALETTE.red, PALETTE.sun, PALETTE.sky, PALETTE.leaf, PALETTE.rose, PALETTE.dusk];
-// Soft card colours (periwinkle, violet, orchid, lime, mint, sky). Cool tones only.
-const CARD_COLORS = ['#8C9CF2', '#B07CF7', '#F29BEA', '#CFEA4A', '#7FD3A2', '#5FB0F0'];
+// Card colours, softened with white in CSS: mustard, coral, cobalt, green, orange, sky.
+const CARD_COLORS = ['#F5B82E', '#E86A4F', '#5B8FD0', '#3FA36B', '#F0913F', '#4FA3EC'];
 
 // Small deterministic PRNG so every answer always gets the same tile.
 export function seeded(seed) {
@@ -87,7 +88,7 @@ export function drawHighlands(canvas) {
   g.clearRect(0, 0, w, h);
 
   const horizon = h * 0.72;
-  const stops = [[0, [79, 163, 236]], [0.45, [139, 92, 246]], [1, [240, 127, 227]]];
+  const stops = [[0, [47, 109, 181]], [0.5, [79, 163, 236]], [1, [245, 184, 46]]];
   const colourAt = t => {
     for (let i = 1; i < stops.length; i++) {
       if (t <= stops[i][0]) {
@@ -114,7 +115,7 @@ export function drawHighlands(canvas) {
 
   // Sun, built from yellow dots.
   const sx = w * 0.72, sy = horizon * 0.42, sr = Math.min(w, h) * 0.16;
-  g.fillStyle = PALETTE.sun;
+  g.fillStyle = PALETTE.red;
   for (let y = sy - sr; y < sy + sr; y += 4) {
     for (let x = sx - sr; x < sx + sr; x += 4) {
       if (Math.hypot(x - sx, y - sy) < sr && noise(x, y) > 0.12) {
@@ -139,17 +140,17 @@ export function drawHighlands(canvas) {
       g.fillRect(x, y, 1.4, 1.4);
     }
   };
-  ridge(horizon - 28, [[16, 0.012, 1.2], [9, 0.031, 0.3], [4, 0.09, 2]], '#6A4FD8', 'rgba(240,127,227,.45)');
-  ridge(horizon + 4, [[12, 0.018, 3.1], [6, 0.05, 1.1], [2, 0.14, 0.5]], '#2C2A6B', 'rgba(255,255,255,.16)');
+  ridge(horizon - 28, [[16, 0.012, 1.2], [9, 0.031, 0.3], [4, 0.09, 2]], '#1E8C5A', 'rgba(245,184,46,.45)');
+  ridge(horizon + 4, [[12, 0.018, 3.1], [6, 0.05, 1.1], [2, 0.14, 0.5]], PALETTE.ink, 'rgba(243,235,221,.18)');
 
   // Terraces: rows of coffee bushes as dots on the slope below the ridges.
   const terraceTop = horizon + 30;
-  g.fillStyle = '#CFEA4A';
+  g.fillStyle = PALETTE.sun;
   g.fillRect(0, terraceTop, w, h - terraceTop);
   const rows = Math.max(4, Math.round((h - terraceTop) / 8));
   for (let k = 0; k < rows; k++) {
     const y0 = terraceTop + 5 + k * ((h - terraceTop) / rows);
-    g.fillStyle = k % 2 ? PALETTE.leaf : '#2E9A57';
+    g.fillStyle = k % 2 ? PALETTE.red : PALETTE.leaf;
     for (let x = 2 + (k % 2) * 3; x <= w; x += 6) {
       const y = y0 + 3 * Math.sin(x * 0.02 + k) + 2 * Math.sin(x * 0.055 + k * 2);
       g.beginPath(); g.arc(x, y, 1.9, 0, Math.PI * 2); g.fill();
@@ -157,8 +158,8 @@ export function drawHighlands(canvas) {
   }
 
   // A few coloured "stars": the scattered dot clusters from the reference prints.
-  [[0.12, 0.18, PALETTE.sun], [0.2, 0.3, PALETTE.sky], [0.4, 0.12, PALETTE.leaf],
-   [0.88, 0.2, PALETTE.sky], [0.55, 0.28, '#ffffff'], [0.3, 0.52, PALETTE.sun]].forEach(([fx, fy, c]) => {
+  [[0.12, 0.18, PALETTE.sun], [0.2, 0.3, PALETTE.dusk], [0.4, 0.12, PALETTE.leaf],
+   [0.88, 0.2, PALETTE.dusk], [0.55, 0.28, '#ffffff'], [0.3, 0.52, PALETTE.sun]].forEach(([fx, fy, c]) => {
     g.fillStyle = c;
     g.beginPath(); g.arc(fx * w, fy * horizon, 3.2, 0, Math.PI * 2); g.fill();
   });
@@ -171,10 +172,10 @@ export class VoiceWave {
     const r = seeded(seed + ':wave');
     const n = 96;
     this.layers = [
-      { colour: 'rgba(79,163,236,.60)', amp: [] },
-      { colour: 'rgba(139,92,246,.70)', amp: [] },
-      { colour: 'rgba(242,88,44,.70)', amp: [] },
-      { colour: 'rgba(240,127,227,.60)', amp: [] }
+      { colour: 'rgba(245,184,46,.70)', amp: [] },
+      { colour: 'rgba(47,109,181,.65)', amp: [] },
+      { colour: 'rgba(224,65,43,.70)', amp: [] },
+      { colour: 'rgba(30,140,90,.60)', amp: [] }
     ];
     // Syllable-like bumps so it reads as speech, not noise.
     let env = 0.2;
