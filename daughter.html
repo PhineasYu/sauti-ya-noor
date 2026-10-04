@@ -4,21 +4,56 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Weekend questions · Sauti ya Noor</title>
-  <meta name="theme-color" content="#EAE6DC">
+  <meta name="theme-color" content="#E4E6E5">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="status">
+    <nav class="views" aria-label="Switch view">
+      <a href="./">Visitor</a>
+      <a href="daughter.html" aria-current="page">Noor’s daughter</a>
+    </nav>
+  </div>
   <header class="d-head">
-    <p class="place"><a href="./">Back to the visitor page</a></p>
-    <h1>Maswali ya<br>wikendi</h1>
-    <p>Questions visitors asked that Noor has no recorded answer for yet. Write the answer with your mother, in Swahili and English. It joins her library, and the next visitor who asks will get it.</p>
+    <h1>Maswali ya<br><span>wikendi</span></h1>
+    <p class="lede">Visitors asked these, and Noor has no recorded answer yet. Write one with your mother. The next visitor who asks will hear it.</p>
   </header>
   <main>
+    <h2 class="sec">How to answer <span>About five minutes a question</span></h2>
+    <ol class="flow">
+      <li class="step c-peri" data-next="right">
+        <span class="step-n">1</span>
+        <span class="art art-bubbles" aria-hidden="true"><i></i><i></i></span>
+        <h3>Read the question<span>it may be in French or German</span></h3>
+      </li>
+      <li class="step c-lime">
+        <span class="step-n">2</span>
+        <span class="art art-tile" data-tile="story" aria-hidden="true"></span>
+        <h3>Write Noor’s answer<span>one or two sentences, as she’d say it</span></h3>
+      </li>
+      <li class="step step-wide c-violet">
+        <span class="step-n">3</span>
+        <span class="art art-wave" aria-hidden="true"></span>
+        <h3>Noor records it<span>until then, visitors read your text</span></h3>
+      </li>
+    </ol>
+
+    <h2 class="sec">A good answer <span>Short, friendly, and in Noor’s voice</span></h2>
+    <article class="example">
+      <p class="ex-q">“Is there wifi on the farm?”</p>
+      <div class="ex-a">
+        <p lang="sw"><b>Kiswahili</b>Hakuna wifi shambani, lakini simu zinapata mtandao vizuri.</p>
+        <p><b>English</b>There’s no wifi on the farm, but phone signal is good.</p>
+        <p><b>Topic</b>Wifi and signal</p>
+      </div>
+    </article>
+
+    <h2 class="sec">Waiting for you <span id="q-count">Questions from visitors</span></h2>
     <ul id="queue" class="queue"></ul>
   </main>
   <script type="module" src="js/daughter.js"></script>

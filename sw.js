@@ -1,7 +1,7 @@
 // Offline support. The app shell is cached on install; scripts, fonts and audio
 // are cached the first time they load. The AI model itself is cached by
 // transformers.js in the browser's Cache Storage.
-const CACHE = 'sauti-v1';
+const CACHE = 'sauti-v2';
 const SHELL = [
   './', 'index.html', 'daughter.html', 'css/style.css', 'manifest.json', 'icons/icon.svg',
   'js/app.js', 'js/daughter.js', 'js/matcher.js', 'js/store.js', 'js/visuals.js',
@@ -9,7 +9,10 @@ const SHELL = [
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // cache: 'reload' skips the HTTP cache so a new version never installs stale files.
+  e.waitUntil(caches.open(CACHE)
+    .then(c => c.addAll(SHELL.map(u => new Request(u, { cache: 'reload' }))))
+    .then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', e => {

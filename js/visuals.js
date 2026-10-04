@@ -3,11 +3,13 @@
 // highlands hero, Noor's layered voice waveform and the match-strength orb.
 
 export const PALETTE = {
-  red: '#E4502B', sun: '#F2C230', sky: '#6AA0D6',
-  leaf: '#45A866', rose: '#EC5A99', dusk: '#5B46B8',
-  ink: '#161616', paper: '#EAE6DC'
+  red: '#F2582C', sun: '#F7E03C', sky: '#4FA3EC',
+  leaf: '#3DBA6B', rose: '#F07FE3', dusk: '#8B5CF6',
+  ink: '#141414', paper: '#E4E6E5'
 };
-const TILE_COLORS = [PALETTE.red, PALETTE.sun, PALETTE.sky, PALETTE.leaf, PALETTE.rose, '#2F6FB7'];
+const TILE_COLORS = [PALETTE.red, PALETTE.sun, PALETTE.sky, PALETTE.leaf, PALETTE.rose, PALETTE.dusk];
+// Soft card colours (periwinkle, violet, orchid, lime, mint, sky). Cool tones only.
+const CARD_COLORS = ['#8C9CF2', '#B07CF7', '#F29BEA', '#CFEA4A', '#7FD3A2', '#5FB0F0'];
 
 // Small deterministic PRNG so every answer always gets the same tile.
 export function seeded(seed) {
@@ -24,7 +26,7 @@ export function seeded(seed) {
 
 export function accentFor(seed) {
   const r = seeded(seed + ':accent');
-  return TILE_COLORS[Math.floor(r() * TILE_COLORS.length)];
+  return CARD_COLORS[Math.floor(r() * CARD_COLORS.length)];
 }
 
 function cell(shape, x, y, color, rot) {
@@ -85,7 +87,7 @@ export function drawHighlands(canvas) {
   g.clearRect(0, 0, w, h);
 
   const horizon = h * 0.72;
-  const stops = [[0, [228, 80, 43]], [0.45, [236, 90, 153]], [1, [91, 70, 184]]];
+  const stops = [[0, [79, 163, 236]], [0.45, [139, 92, 246]], [1, [240, 127, 227]]];
   const colourAt = t => {
     for (let i = 1; i < stops.length; i++) {
       if (t <= stops[i][0]) {
@@ -137,27 +139,26 @@ export function drawHighlands(canvas) {
       g.fillRect(x, y, 1.4, 1.4);
     }
   };
-  ridge(horizon - 28, [[16, 0.012, 1.2], [9, 0.031, 0.3], [4, 0.09, 2]], '#2A2148', 'rgba(236,90,153,.35)');
-  ridge(horizon + 4, [[12, 0.018, 3.1], [6, 0.05, 1.1], [2, 0.14, 0.5]], PALETTE.ink, 'rgba(234,230,220,.18)');
+  ridge(horizon - 28, [[16, 0.012, 1.2], [9, 0.031, 0.3], [4, 0.09, 2]], '#6A4FD8', 'rgba(240,127,227,.45)');
+  ridge(horizon + 4, [[12, 0.018, 3.1], [6, 0.05, 1.1], [2, 0.14, 0.5]], '#2C2A6B', 'rgba(255,255,255,.16)');
 
-  // Terraces: contour lines on paper below the ridges (coffee rows on the slope).
+  // Terraces: rows of coffee bushes as dots on the slope below the ridges.
   const terraceTop = horizon + 30;
-  g.fillStyle = PALETTE.paper;
+  g.fillStyle = '#CFEA4A';
   g.fillRect(0, terraceTop, w, h - terraceTop);
-  g.strokeStyle = PALETTE.ink; g.lineWidth = 1;
-  for (let k = 0; k < 9; k++) {
-    const y0 = terraceTop + 6 + k * ((h - terraceTop) / 9);
-    g.beginPath();
-    for (let x = 0; x <= w; x += 3) {
+  const rows = Math.max(4, Math.round((h - terraceTop) / 8));
+  for (let k = 0; k < rows; k++) {
+    const y0 = terraceTop + 5 + k * ((h - terraceTop) / rows);
+    g.fillStyle = k % 2 ? PALETTE.leaf : '#2E9A57';
+    for (let x = 2 + (k % 2) * 3; x <= w; x += 6) {
       const y = y0 + 3 * Math.sin(x * 0.02 + k) + 2 * Math.sin(x * 0.055 + k * 2);
-      x === 0 ? g.moveTo(x, y) : g.lineTo(x, y);
+      g.beginPath(); g.arc(x, y, 1.9, 0, Math.PI * 2); g.fill();
     }
-    g.stroke();
   }
 
   // A few coloured "stars": the scattered dot clusters from the reference prints.
   [[0.12, 0.18, PALETTE.sun], [0.2, 0.3, PALETTE.sky], [0.4, 0.12, PALETTE.leaf],
-   [0.88, 0.2, PALETTE.sky], [0.55, 0.28, PALETTE.paper], [0.3, 0.52, PALETTE.sun]].forEach(([fx, fy, c]) => {
+   [0.88, 0.2, PALETTE.sky], [0.55, 0.28, '#ffffff'], [0.3, 0.52, PALETTE.sun]].forEach(([fx, fy, c]) => {
     g.fillStyle = c;
     g.beginPath(); g.arc(fx * w, fy * horizon, 3.2, 0, Math.PI * 2); g.fill();
   });
@@ -170,10 +171,10 @@ export class VoiceWave {
     const r = seeded(seed + ':wave');
     const n = 96;
     this.layers = [
-      { colour: 'rgba(242,194,48,.55)', amp: [] },
-      { colour: 'rgba(91,70,184,.70)', amp: [] },
-      { colour: 'rgba(228,80,43,.75)', amp: [] },
-      { colour: 'rgba(236,90,153,.55)', amp: [] }
+      { colour: 'rgba(79,163,236,.60)', amp: [] },
+      { colour: 'rgba(139,92,246,.70)', amp: [] },
+      { colour: 'rgba(242,88,44,.70)', amp: [] },
+      { colour: 'rgba(240,127,227,.60)', amp: [] }
     ];
     // Syllable-like bumps so it reads as speech, not noise.
     let env = 0.2;
@@ -211,18 +212,20 @@ export class VoiceWave {
       }
     });
     g.globalAlpha = 1;
-    g.fillStyle = PALETTE.ink;
-    g.fillRect(0, mid - 0.5, w, 1);
-    if (this.progress > 0 && this.progress < 1) g.fillRect(this.progress * w - 1, 0, 2, h);
+    g.fillStyle = 'rgba(255,255,255,.75)';
+    g.fillRect(0, mid - 1, w, 2);
+    if (this.progress > 0 && this.progress < 1) g.fillRect(this.progress * w - 1.5, 0, 3, h);
   }
   set(p) { this.progress = p; this.draw(); }
 }
 
-// ---------- Match-strength orb (after the probability-density plots) ----------
+// ---------- Match-strength orb: a soft breathing gradient ----------
+// A strong match is vivid and bright; a weak one fades towards grey.
 export function orbStyle(score) {
   const s = Math.max(0, Math.min(1, score));
-  const core = 6 + s * 16;   // a confident match has a big, sharp core
-  const ring = core + 6;
-  const halo = ring + 10 + (1 - s) * 20;
-  return `radial-gradient(circle at 50% 50%, ${PALETTE.ink} 0 ${core}%, ${PALETTE.paper} ${core + 1}% ${ring}%, ${PALETTE.sky} ${ring + 2}% ${halo - 8}%, ${PALETTE.leaf} ${halo - 4}%, transparent ${halo + 10}%)`;
+  const pct = Math.round(25 + s * 75); // how much colour survives
+  const c = hex => `color-mix(in oklab, ${hex} ${pct}%, #C9CCCE)`;
+  return `radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0 6%, rgba(255,255,255,0) 42%),
+    radial-gradient(circle at 70% 75%, ${c(PALETTE.rose)} 0, transparent 55%),
+    conic-gradient(from 210deg, ${c(PALETTE.sky)}, ${c(PALETTE.dusk)}, ${c(PALETTE.rose)}, ${c('#FF9A6B')}, ${c(PALETTE.sky)})`;
 }

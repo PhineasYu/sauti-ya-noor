@@ -26,7 +26,7 @@ Open the folder with any static server (Claude Code can start one), or visit the
 | Runtime | transformers.js 3.8.1 | Apache-2.0 |
 | Answers | Written for this prototype; Noor is fictional | — |
 | Swahili text | AI-translated | Needs native-speaker review |
-| Audio | Placeholders for Noor's own recordings | — |
+| Audio | AI voice stand-ins (ElevenLabs `eleven_v4`, Swahili voice "Halima"), to be replaced by Noor's own recordings | ElevenLabs terms |
 
 ## What this does not cover (yet)
 

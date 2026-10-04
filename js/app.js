@@ -45,14 +45,19 @@ function setEngine(text, state) {
 }
 
 // ---------- suggestions ----------
+const same = (x, y) => x.toLowerCase().replace(/[^a-z]/g, '') === y.toLowerCase().replace(/[^a-z]/g, '');
 function renderSuggestions() {
   const wrap = $('#suggestions');
   wrap.innerHTML = '';
-  SUGGESTED.map(id => answers.find(a => a.id === id)).filter(Boolean).forEach(a => {
+  // Bento layout: first card tall, fourth card wide.
+  const shape = ['tall', '', '', 'wide', '', ''];
+  SUGGESTED.map(id => answers.find(a => a.id === id)).filter(Boolean).forEach((a, i) => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'chip';
-    b.innerHTML = `<span class="chip-tile">${kangaTile(a.id)}</span><span>${a.examples[0]}</span>`;
+    b.className = `bento-card ${shape[i] || ''}`;
+    b.style.setProperty('--accent', accentFor(a.id));
+    b.innerHTML = `<span class="bento-tile">${kangaTile(a.id)}</span>
+      <span class="bento-text"><span class="bento-q">${a.examples[0]}</span>${same(a.topic, a.examples[0]) ? '' : `<span class="bento-topic">${a.topic}</span>`}</span>`;
     b.addEventListener('click', () => { $('#q').value = a.examples[0]; ask(); });
     wrap.appendChild(b);
   });
@@ -160,7 +165,7 @@ function matchNote(result) {
   const how = result.mode === 'ai' ? 'AI on this phone' : 'keyword matching';
   return `
     <aside class="match">
-      <div class="orb" style="background:${orbStyle(result.score)}" aria-hidden="true"></div>
+      <div class="orb" style="--orb:${orbStyle(result.score)}" aria-hidden="true"><i></i><i></i></div>
       <p>Matched by ${how}, strength ${result.score.toFixed(2)}.
       These are Noor\u2019s own words. The AI only chose which answer to play.</p>
     </aside>`;
@@ -185,7 +190,7 @@ function renderUnsure(result, question) {
       <p class="jina" lang="sw">Nitakujibu</p>
     </article>
     <aside class="match">
-      <div class="orb" style="background:${orbStyle(result.score)}" aria-hidden="true"></div>
+      <div class="orb" style="--orb:${orbStyle(result.score)}" aria-hidden="true"><i></i><i></i></div>
       <p>${result.score < 0.05
         ? 'None of Noor\u2019s answers came close.'
         : `The closest answer was \u201c${result.candidate.topic}\u201d (strength ${result.score.toFixed(2)}), below the ${result.threshold.toFixed(2)} needed.`}
@@ -233,6 +238,7 @@ async function boot() {
   answers = await loadAnswers();
   $('#count').textContent = answers.length;
   renderSuggestions();
+  document.querySelectorAll('[data-tile]').forEach(el => { el.innerHTML = kangaTile(el.dataset.tile); });
 
   matcher = new Matcher(answers);
   $('#ask').addEventListener('submit', ask);

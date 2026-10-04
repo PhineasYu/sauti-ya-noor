@@ -5,25 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sauti ya Noor · Ask Noor about her coffee farm</title>
   <meta name="description" content="Ask Noor anything about her coffee farm and hear her answer in her own voice. Works offline on your phone.">
-  <meta name="theme-color" content="#EAE6DC">
+  <meta name="theme-color" content="#E4E6E5">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="status" role="status">
-    <span id="net" data-state="online"><i aria-hidden="true"></i><span id="net-label">Online</span></span>
-    <span id="engine" data-state="loading">Getting Noor’s answers ready on this phone…</span>
+  <div class="status">
+    <span id="net" data-state="online" role="status"><i aria-hidden="true"></i><span id="net-label">Online</span></span>
+    <nav class="views" aria-label="Switch view">
+      <a href="./" aria-current="page">Visitor</a>
+      <a href="daughter.html">Noor’s daughter</a>
+    </nav>
+    <span id="engine" data-state="loading" role="status">Getting Noor’s answers ready on this phone…</span>
   </div>
 
   <header class="hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="hero-text">
       <p class="place">Shamba la Noor, Ondera highlands</p>
-      <h1>Sauti ya<br>Noor</h1>
+      <h1>Sauti ya<br><span>Noor</span></h1>
       <p class="lede">Ask Noor anything about her coffee farm. You’ll hear her answer in Swahili, in her own voice, with subtitles in your language.</p>
     </div>
   </header>
@@ -37,7 +41,8 @@
       </div>
     </form>
 
-    <div id="suggestions" class="suggestions" aria-label="Questions other visitors ask"></div>
+    <h2 class="sec" id="sugg-title">Visitors often ask <span>Tap one to try</span></h2>
+    <div id="suggestions" class="bento" aria-labelledby="sugg-title"></div>
 
     <div id="listening" class="listening" hidden>
       <div class="streaks" aria-hidden="true"></div>
@@ -48,12 +53,37 @@
   </main>
 
   <footer class="about">
-    <h2>How this works</h2>
-    <p>Noor has recorded <span id="count">15</span> answers about her farm. When you ask a question, a small AI model on your phone finds the answer that fits best and plays it. It never writes new answers, so it can’t make things up.</p>
-    <p>If no answer fits, your question is saved for Noor’s daughter, who replies at the weekend. Her reply becomes a new answer for the next visitor.</p>
-    <p>After your first visit, everything works without signal.</p>
-    <p class="fine">Prototype for the World Bank Small AI for Development hackathon. Noor is fictional. Swahili text is AI-translated and awaits native-speaker review; recordings are placeholders.
-      <a href="daughter.html">Open the daughter’s view</a></p>
+    <h2 class="sec">How it works <span>No guessing, no signal needed</span></h2>
+    <ol class="flow">
+      <li class="step c-peri" data-next="right">
+        <span class="step-n">1</span>
+        <span class="art art-bubbles" aria-hidden="true"><i></i><i></i></span>
+        <h3>You ask<span>in any language</span></h3>
+      </li>
+      <li class="step c-lime" data-next="down">
+        <span class="step-n">2</span>
+        <span class="art art-tile" data-tile="process" aria-hidden="true"></span>
+        <h3>The phone picks<span>one of Noor’s <b id="count">15</b> answers</span></h3>
+      </li>
+      <li class="step step-wide c-violet">
+        <span class="step-n">3</span>
+        <span class="art art-wave" aria-hidden="true"></span>
+        <h3>Noor answers<span>her voice in Swahili, subtitles in yours</span></h3>
+      </li>
+      <li class="step c-orchid">
+        <span class="step-tag">No answer fits?</span>
+        <span class="art art-circles" aria-hidden="true"><i></i><i></i></span>
+        <h3>Her daughter replies<span>at the weekend, for the next visitor</span></h3>
+        <a class="step-link" href="daughter.html">Daughter’s view →</a>
+      </li>
+      <li class="step c-mint">
+        <span class="step-tag">After visit one</span>
+        <span class="art art-rings" aria-hidden="true"></span>
+        <h3>Works offline<span>everything is saved on your phone</span></h3>
+      </li>
+    </ol>
+    <p class="fine">The AI only chooses which answer to play. It never writes one, so it can’t make things up.
+      Prototype for the World Bank Small AI for Development hackathon. Noor is fictional; Swahili text and voice are AI-made stand-ins awaiting a native speaker and Noor’s own recordings.</p>
   </footer>
 
   <script type="module" src="js/app.js"></script>
